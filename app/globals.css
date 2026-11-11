@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #F7F5F2;
+  --foreground: #111111;
+  --bordeaux: #6B1425;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: #F7F5F2;
+  color: #111111;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #F7F5F2;
+  color: #111111;
+  position: relative;
+  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Subtle Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 99;
+  opacity: 0.035;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F7F5F2;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(17, 17, 17, 0.2);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #6B1425;
+}
+
+/* Typography display */
+.editorial-display {
+  font-family: 'Playfair Display', Didot, 'Cormorant Garamond', Georgia, serif;
+  letter-spacing: -0.025em;
+}
+
+/* Glowing pill animation for primary button */
+@keyframes glowPulse {
+  0%, 100% {
+    box-shadow: 0 0 25px -4px rgba(107, 20, 37, 0.35), 0 0 10px -2px rgba(107, 20, 37, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 35px 2px rgba(107, 20, 37, 0.55), 0 0 15px 0px rgba(107, 20, 37, 0.35);
+  }
+}
+
+.btn-bordeaux-glow {
+  box-shadow: 0 10px 30px -8px rgba(107, 20, 37, 0.45);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-bordeaux-glow:hover {
+  animation: glowPulse 2s infinite ease-in-out;
+  box-shadow: 0 15px 40px -5px rgba(107, 20, 37, 0.6);
+  transform: translateY(-2px);
+}
+
+/* Reduced motion accessibility */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
